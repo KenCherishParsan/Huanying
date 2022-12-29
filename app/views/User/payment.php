@@ -13,10 +13,10 @@
 	<div style="display:flex; justify-content: center; margin-top:10%;">
 		<form enctype="multipart/form-data" method="POST" action="" style="width: 500px;">
 			<div class="form-group">
-				<input class="form-control" type="text" name="sender_name" placeholder="Your Name" required/>
+				<input class="form-control" type="text" name="name" placeholder="Name" required/>
 			</div>
 			<div class="form-group">
-				<input class="form-control" type="email" name="sender_email" placeholder="Email Address" required/>
+				<input class="form-control" type="email" name="email" placeholder="Email Address" required/>
 			</div>
 			<div class="form-group">
 				<input class="form-control" type="text" name="subject" placeholder="Reference Code"/>
