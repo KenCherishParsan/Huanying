@@ -80,7 +80,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= 'http://localhost/huanying/';
+$config['base_url'] 				= 'http://localhost/huanying_hotel/';
 
 /*
 |--------------------------------------------------------------------------
@@ -155,7 +155,7 @@ $config['charset']					= 'UTF-8';
 | This config will be used in the Router Class inside kernel.
 |
 */
-$config['default_controller'] 		= 'Welcome';
+$config['default_controller'] 		= 'User';
 $config['default_method'] 			= 'index';
 
 /*
