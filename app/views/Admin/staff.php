@@ -1,180 +1,68 @@
-    <div class="container-fluid py-4">
-      <div class="row">
-                    <div class="col-md-6">
-                        <h1 class="h3 mb-2 text-white">Add Staff</h1>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-info m-1 float-right btn-sm text-white" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-user-plus fa-lg text-white"></i>&nbsp;&nbsp;Add New Staff</button>
-                    </div>
-                    
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin Panel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="<?php echo BASE_URL . PUBLIC_DIR; ?>/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reg.css" type="text/css">
+    <script language="javascript" type="text/javascript">
+        function submitreg() {
+            var form = document.reg;
+            if (form.name.value == "") {
+                alert("Enter Name.");
+                return false;
+            } else if (form.uname.value == "") {
+                alert("Enter username.");
+                return false;
+            } else if (form.upass.value == "") {
+                alert("Enter Password.");
+                return false;
+            } else if (form.uemail.value == "") {
+                alert("Enter email.");
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="well">
+            <h2>Add Your Staff</h2>
+            <hr>
+            <form action="" method="post" name="reg">
+                <div class="form-group">
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" class="form-control" name="fullname" placeholder="example: Juan Ying" required>
                 </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header pb-0">
-              <h6>Add Staff</h6>
-            </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0" >
-                  <thead>
-                      <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Staff Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Age</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Gender</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Position</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                <div class="form-group">
+                    <label for="uname">User Name:</label>
+                    <input type="text" class="form-control" name="uname" placeholder="exmple: huanying" required>
+                </div>
+                <div class="form-group">
+                    <label for="uemail">Email:</label>
+                    <input type="email" class="form-control" name="uemail" placeholder="example: huanying@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="upass">Password</label>
+                    <input type="text" class="form-control" name="upass" placeholder="abc123" required>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary button" name="submit" value="Add Manager" onclick="return(submitreg());">Submit</button>
 
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($data as $row):?>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $row['staff_name'];?></h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $row['age'];?></h6>
-                        </div>
-                      </div>
-                        
-                      </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $row['gender'];?></h6>
-                        </div>
-                      </div>
-                        
-                      </td>
-                      <td>
-                       <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $row['position'];?></h6>
-                        </div>
-                        </div>
-                      </td>
-                      <td class="d-flex  justify-content-center">
-                        <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<?php echo  $row['staff_id'];?>"><i class="fas fa-edit"></i>&nbsp;
-                          Edit
-                        </a> &nbsp; &nbsp;
-                        <a href="<?php echo site_url('Admin/delete_category/'.$row['staff_id'].'')?>" class="btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
-                          <i class="fas fa-trash"></i> &nbsp;
-                          Delete
-                        </a>
-                      </td>
-                    </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-<!-- The Modal -->
-<div class="modal" id="addModal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+               <br>
+                <div id="click_here">
+                    <a href="../admin.php">Back to Admin Panel</a>
+                </div>
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Add New Staff</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        <form action="<?= site_url('Admin/add_new_staff')?>" method="post" enctype= "multipart/form-data">
-        <div class="form-group">
-            <label class="form-control-label">Staff name:</label>
-            <input type="text" name="staff_name" class="form-control">
+            </form>
         </div>
-        <div class="form-group">
-            <label class="form-control-label">Age:</label>
-            <input type="text" name="age" class="form-control">
-        </div>
-          <div class="form-group">
-            <label class="form-control-label">Gender:</label>
-            <input type="text" name="gender" class="form-control">
-        </div>
-        <div class="form-group">
-            <label class="form-control-label">Position:</label>
-            <select name="position" class="form-control">
-              <option value="Book-Keeper">Book-Keeper</option>
-              <option value="Maintenance">Maintenance</option>
-              <option value="Manager">Manager</option>
-            </select>
-        </div>
-  
-          
-        
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-        </form>
     </div>
-  </div>
-</div>
 
-<!-- Update Student -->
-<?php foreach ($data as $row):?>
-<div class="modal" id="myModal<?php echo $row['staff_id'];?>">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+</body>
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Update Staff</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <form action="<?= site_url('Admin/update_staff')?>" method="post" enctype= "multipart/form-data">
-          <div class="form-group">
-            <input type="hidden" name="staff_id" value="<?php echo $row['staff_id'];?>" class="form-control">
-        </div>
-        <div class="form-group">
-            <label class="form-control-label">Staff Name:</label>
-            <input type="text" name="staff_name" value="<?php echo $row['staff_name'];?>" class="form-control">
-        </div>
-        <div class="form-group">
-            <label class="form-control-label">Age:</label>
-            <input type="text" name="age" value="<?php echo $row['age'];?>" class="form-control">
-        </div>
-          <div class="form-group">
-            <label class="form-control-label">Gender:</label>
-            <input type="text" name="gender" value="<?php echo $row['gender'];?>" class="form-control">
-        </div>
-        <div class="form-group">
-            <label class="form-control-label">Position:</label>
-            <input type="text" name="position" value="<?php echo $row['position'];?>" class="form-control">
-        </div>
-
-          
-          
-        
-      
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Update</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-        </form>
-    </div>
-  </div>
-</div>
-<?php endforeach;?>
+</html>
