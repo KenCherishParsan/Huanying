@@ -24,34 +24,45 @@ class Customer_model extends Model {
 		);
 		return password_hash($password, PASSWORD_BCRYPT, $options);
 	}
-	public function insert_customer($email,$password){
+	public function insert_customer($email,$password,$user_id,$token){
 		$data = array(
 			'username' => $email,
 			'password' => $this->passwordhash($password),
 			'role'=>"Customer",
-			'status'=>"Verified"
+			'status'=>"Not Verified",
+			'user_id'=> $user_id,
+			'token'=>$token
+
 		);
-		return $this->db->table('tblusers')->insert($data);
+		$row = $this->db->table('tblusers') 					
+    					->where('username', $email)
+    					->get();
+
+    	if($row==0){
+			$this->db->table('tblusers')->insert($data);
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
-	public function add_customer($firstname,$lastname,$middlename,$address,$gender,$birthday){
-		
+	public function add_customer($lastname,$firstname,$middlename,$address,$gender,$birthday){
 		$data = array(
-			
-			'firstname' => $firstname,
 			'lastname' => $lastname,
+			'firstname' => $firstname,
 			'middlename'=>$middlename,
 			'address'=>$address,
 			'gender'=>$gender,
 			'birthday'=>$birthday
 
 		);
-		$this->call->database();
 		return $this->db->table('tbl_customer')->insert($data);
-		return true;
 	}
-// public function add_customer(){
-// 	echo '123';
-// }
+	public function verification($email){
+		$this->db->table('tblusers')->where('username', $email)->update('status', "Verified");
+				
+	}
+
 
 
 }
